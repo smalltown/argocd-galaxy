@@ -1,0 +1,24 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: metrics-server
+  namespace: argocd
+spec:
+  generators:
+  - clusters: {} # Automatically use all clusters defined within Argo CD
+  template:
+    metadata:
+      name: '{{name}}-metrics-server' # 'name' field of the cluster
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+      source:
+        repoURL: https://github.com/smalltown/argocd-galaxy
+        targetRevision: main
+        path: infrastructure/solar-system/basic/metrcis-server
+      destination:
+        server: '{{server}}'
+        namespace: kube-system
