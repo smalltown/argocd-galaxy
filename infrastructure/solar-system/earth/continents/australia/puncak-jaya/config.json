@@ -1,0 +1,11 @@
+{
+  "project": "default",
+  "source": {
+    "repoURL": "https://github.com/smalltown/argocd-galaxy",
+    "targetRevision": "main",
+    "path": "infrastructure/solar-system/basic/resource-quota/mem-bound"
+  },
+  "destination": {
+    "namespace": "australia"
+  }
+}
